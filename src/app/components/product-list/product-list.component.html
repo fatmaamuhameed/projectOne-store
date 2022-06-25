@@ -1,0 +1,17 @@
+<section >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center" *ngFor="let item of productList">
+                <img [src]="item.url" alt="" class="product-image product-list" (click)="goToProductDetails(item.id)">
+                <h6>{{item.name}}</h6>
+                <p>${{item.price}}</p>
+                <select class="w-25" (change)="selectQuantity($event , item.id)" [id]="'quantitty'+item.id">
+                    <option *ngFor="let ops of options" [value]="ops"> {{ops}}</option>
+                </select>
+                <div class="mt-3">
+                    <button class="btn btn-primary" (click)="addToCart(item)"> Add to cart </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

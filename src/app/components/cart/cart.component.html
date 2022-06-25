@@ -1,0 +1,48 @@
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 mt-5">
+                <div class="row " *ngFor="let itemC of cart">
+                    <div class="col-md-3 mt-2 text-center">
+                        <img [src]="itemC?.item.url" alt="">
+                    </div>
+                    <div class="col-md-8">
+                        <h6 class="fw-bold">{{itemC?.item.name}}</h6>
+                        <p>${{itemC?.item.price}}</p>
+
+                        <div class="row">
+                            <div class="col-auto">
+                                <label for="">Amount : </label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control text-center w-50" min="0" (change)="changeValue($event , itemC )" [value]="itemC?.counter">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="fw-bold">Total: ${{total}}</p>
+                </div>
+
+            </div>
+            <div class="col-md-5">
+                <form [formGroup]="checkoutForm" (ngSubmit)="checkout(checkoutForm)">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Full name</label>
+                        <input type="text" class="form-control" placeholder="(minimum 3 characters)" formControlName="fullName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Address</label>
+                        <input type="text" class="form-control" placeholder="(minimum 3 characters)" formControlName="address">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Credit card number</label>
+                        <input type="text" class="form-control" placeholder="(16-digit-number)" formControlName="creditCard">
+                    </div>
+                    <button class="btn btn-primary" [disabled]="checkoutForm.invalid" >Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
