@@ -10,4 +10,4 @@ Then the user can enter some information and then press submit to go to the last
 Instruction to start the project : 
 
 open project in VS and writ command npm i only to download all libraries 
-then write ng -s o to run project
+then write ng s -o to run project
