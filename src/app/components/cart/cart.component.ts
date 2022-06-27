@@ -39,25 +39,23 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/confirmation']);
   }
   changeValue($event:any , item:any){
-    console.log($event.target.value);
-    if($event.target.value == 0){
-      console.log(item);
-
+    console.log($event);
+    debugger
+    if($event == 0){
       const newArr = this.cart.filter(object => {
         return object != item;
       });
-
-      console.log(newArr);
       this.cart = newArr;
-      localStorage.setItem("cartFatma" , JSON.stringify(this.cart))
     }
     else{
-      item.counter = Number($event.target.value);
+      item.counter = Number($event);
       this.total = 0
     }
     
     for(let i = 0 ; i<this.cart.length ; i++){
       this.total += this.cart[i].item.price * this.cart[i].counter 
     }
+    localStorage.setItem("cartFatma" , JSON.stringify(this.cart))
+
   }
 }

@@ -15,7 +15,7 @@
                                 <label for="">Amount : </label>
                             </div>
                             <div class="col-auto">
-                                <input type="number" class="form-control text-center w-50" min="0" (change)="changeValue($event , itemC )" [value]="itemC?.counter">
+                                <input type="number" class="form-control text-center w-50" min="0" (ngModelChange)="changeValue($event , itemC )" [(ngModel)]="itemC.counter" >
                             </div>
                         </div>
                     </div>
