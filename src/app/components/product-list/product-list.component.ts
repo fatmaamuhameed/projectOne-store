@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  productList : Array<any> = [];
+  productList : product[] = [];
   changeCounter : number = 0;
   options : Array<number> = [1,2,3,4,5,6,7,8,9,10];
   cart: Array<any> = [];
@@ -20,8 +21,8 @@ export class ProductListComponent implements OnInit {
     if(localStorage.getItem("cartFatma")){
       this.cart = JSON.parse(localStorage.getItem("cartFatma") || '');
     }
-    this.productService.getAllProducts().subscribe((res) => {
-      this.productList = res;      
+    this.productService.getAllProducts().subscribe((res) => {      
+      this.productList = res;            
     })
   }
 
