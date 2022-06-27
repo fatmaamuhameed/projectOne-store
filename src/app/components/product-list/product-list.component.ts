@@ -63,4 +63,9 @@ export class ProductListComponent implements OnInit {
     localStorage.setItem('cartFatma' , JSON.stringify(this.cart));
     alert("Add To cart");
   }
+
+  addToCartMessagePerant(){
+   alert("jjjjj")
+    
+  }
 }

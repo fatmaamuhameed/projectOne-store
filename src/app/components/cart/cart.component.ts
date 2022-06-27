@@ -39,9 +39,8 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/confirmation']);
   }
   changeValue($event:any , item:any){
-    console.log($event);
-    debugger
     if($event == 0){
+      alert("this item removed");
       const newArr = this.cart.filter(object => {
         return object != item;
       });

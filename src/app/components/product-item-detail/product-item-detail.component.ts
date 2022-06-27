@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,7 +11,8 @@ export class ProductItemDetailComponent implements OnInit {
 
   detailsProduct : any;
   cart: Array<any> = [];
-  options : Array<number> = [1,2,3,4,5,6,7,8,9,10]
+  options : Array<number> = [1,2,3,4,5,6,7,8,9,10];
+  @Output() addToCartMessage = new EventEmitter()
   constructor(private productService:ProductService , private activatedRoute:ActivatedRoute) {
 
     if(localStorage.getItem("cartFatma")){
@@ -30,7 +31,6 @@ export class ProductItemDetailComponent implements OnInit {
         }        
       })
     });
-    
   }
 
   
@@ -61,7 +61,8 @@ export class ProductItemDetailComponent implements OnInit {
     }
    
     localStorage.setItem('cartFatma' , JSON.stringify(this.cart));
-    alert("Add To cart");
+    this.addToCartMessage.emit(alert("Add To cart"));
+    //alert("Add To cart");
   }
 
 }
