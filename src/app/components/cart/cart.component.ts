@@ -11,6 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class CartComponent implements OnInit {
   cart: Array<any> = [];
   total:number = 0;
+  fullName : string = ""
+  displayConfirmation: boolean = false;
   constructor(private productService:ProductService , private router:Router) { }
 
   checkoutForm: any = new FormGroup({
@@ -35,11 +37,12 @@ export class CartComponent implements OnInit {
   checkout(checkoutFormData:any){
     checkoutFormData.value['total'] = this.total
     this.productService.setUserInfo(checkoutFormData.value);
+    this.fullName = checkoutFormData.value.fullName;
+    this.displayConfirmation = true;
     localStorage.setItem("cartFatma" , "")
-    this.router.navigate(['/confirmation']);
+    //this.router.navigate(['/confirmation']);
   }
   changeValue($event:any , item:any){
-    debugger
     item.counter = Number($event);
       this.total = 0
 

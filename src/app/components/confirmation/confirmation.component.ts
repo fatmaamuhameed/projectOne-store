@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -8,6 +8,9 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ConfirmationComponent implements OnInit {
   userInfo:any;
+  @Input() userName = ''; 
+  @Input() total = 0; 
+
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {

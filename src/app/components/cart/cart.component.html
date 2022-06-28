@@ -1,4 +1,4 @@
-<section>
+<section [ngStyle]="{'display': displayConfirmation ? 'none' : 'block'}">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 mt-5">
@@ -30,14 +30,32 @@
                     <div class="mb-3">
                         <label class="form-label fw-bold">Full name</label>
                         <input type="text" class="form-control" placeholder="(minimum 3 characters)" formControlName="fullName">
+
+                        <div *ngIf="checkoutForm.get('fullName').errors != null && checkoutForm.get('fullName').touched"
+                        class="text-danger fw-bold">
+                        <small *ngIf="checkoutForm.get('fullName').errors.required">fullName is required</small>
+                        <small *ngIf="checkoutForm.get('fullName').errors.minlength">fullName minlength is 3</small>
+                    </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Address</label>
                         <input type="text" class="form-control" placeholder="(minimum 3 characters)" formControlName="address">
+
+                        <div *ngIf="checkoutForm.get('address').errors != null && checkoutForm.get('address').touched"
+                        class="text-danger fw-bold">
+                        <small *ngIf="checkoutForm.get('address').errors.required">address is required</small>
+                        <small *ngIf="checkoutForm.get('address').errors.minlength">address minlength is 3</small>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">Credit card number</label>
-                        <input type="number" class="form-control" placeholder="(16-digit-number)" formControlName="creditCard">
+                        <input type="number" pattern="\d{16}" class="form-control" placeholder="(16-digit-number)" formControlName="creditCard">
+
+                        <div *ngIf="checkoutForm.get('creditCard').errors != null && checkoutForm.get('creditCard').touched"
+                        class="text-danger fw-bold">
+                        <small *ngIf="checkoutForm.get('creditCard').errors.required">creditCard is required</small>
+                        <small *ngIf="checkoutForm.get('creditCard').errors.minlength">creditCard must be 16 digit</small>
+                        </div>
                     </div>
                     <button class="btn btn-primary" [disabled]="checkoutForm.invalid" >Submit</button>
                 </form>
@@ -46,3 +64,5 @@
         </div>
     </div>
 </section>
+
+<app-confirmation  [ngStyle]="{'display': !displayConfirmation ? 'none' : 'block'}" [userName]="fullName" [total]="total"></app-confirmation>
